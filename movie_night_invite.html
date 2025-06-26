@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Movie Night Invite</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #1e1e2f;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      text-align: center;
+    }
+    .hidden {
+      display: none;
+    }
+    button {
+      padding: 12px 24px;
+      margin: 10px;
+      font-size: 16px;
+      background-color: #ff4c60;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #e63a50;
+    }
+    .movie-poster {
+      width: 150px;
+      height: auto;
+      margin: 10px;
+      border-radius: 10px;
+      cursor: pointer;
+      border: 3px solid transparent;
+    }
+    .selected {
+      border-color: #ff4c60;
+    }
+    .movies-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .option-container {
+      display: flex;
+      gap: 20px;
+      flex-direction: column;
+      align-items: center;
+    }
+    input[type="text"] {
+      padding: 10px;
+      font-size: 16px;
+      border-radius: 5px;
+      border: none;
+      margin-top: 10px;
+      width: 60%;
+    }
+  </style>
+</head>
+<body>
+  <div id="page1">
+    <h1>Hey love ❤️</h1>
+    <p>I’ve got a special movie night planned just for us.<br />Wanna join me for some cozy time and popcorn?</p>
+    <button onclick="nextPage(1)">Next 🍿</button>
+  </div>
+
+  <div id="page2" class="hidden">
+    <h2>Pick what you’re in the mood for…</h2>
+    <div class="movies-container">
+      <img src="https://upload.wikimedia.org/wikipedia/en/0/0c/Bullet_Train_film_poster.jpg" class="movie-poster" onclick="selectMovie(this, 'Bullet Train')">
+      <img src="https://upload.wikimedia.org/wikipedia/en/1/13/The_Heretic.jpg" class="movie-poster" onclick="selectMovie(this, 'Heretic')">
+      <img src="https://upload.wikimedia.org/wikipedia/en/4/43/The_Disaster_Artist.png" class="movie-poster" onclick="selectMovie(this, 'The Disaster Artist')">
+      <img src="https://upload.wikimedia.org/wikipedia/en/d/d0/The_Way_Way_Back_Poster.jpg" class="movie-poster" onclick="selectMovie(this, 'The Way Way Back')">
+    </div>
+    <div>
+      <button onclick="toggleSuggestionBox()">Other Suggestions 💡</button>
+      <input type="text" id="suggestionBox" class="hidden" placeholder="Suggest your own movie...">
+    </div>
+    <button onclick="nextPage(2)">Next 🎥</button>
+  </div>
+
+  <div id="page3" class="hidden">
+    <h2>Now let’s lock it in 🗓️</h2>
+    <p>When are you free, my favorite person?</p>
+    <div class="option-container">
+      <button onclick="confirmDate('Saturday')">Saturday | 8PM–12AM</button>
+      <button onclick="confirmDate('Sunday')">Sunday | 8PM–12AM</button>
+    </div>
+  </div>
+
+  <div id="confirmationPage" class="hidden">
+    <h2>Done! 🎉</h2>
+    <p id="finalMessage"></p>
+    <p>I’ll be counting the minutes 😘</p>
+  </div>
+
+  <script>
+    let selectedMovie = '';
+
+    function nextPage(step) {
+      document.getElementById(`page${step}`).classList.add("hidden");
+      document.getElementById(`page${step + 1}`).classList.remove("hidden");
+    }
+
+    function selectMovie(elem, movieName) {
+      document.querySelectorAll('.movie-poster').forEach(poster => poster.classList.remove('selected'));
+      elem.classList.add('selected');
+      selectedMovie = movieName;
+    }
+
+    function toggleSuggestionBox() {
+      const box = document.getElementById("suggestionBox");
+      box.classList.toggle("hidden");
+    }
+
+    function confirmDate(day) {
+      const suggestion = document.getElementById("suggestionBox").value;
+      const movie = suggestion || selectedMovie || "a surprise movie";
+      document.getElementById("page3").classList.add("hidden");
+      document.getElementById("confirmationPage").classList.remove("hidden");
+      document.getElementById("finalMessage").innerText = `You picked ${movie} on ${day}. Can’t wait ❤️`;
+    }
+  </script>
+</body>
+</html>
