@@ -116,6 +116,13 @@
     <ul id="summary"></ul>
   </div>
 
+  <!-- Hidden form to email result -->
+  <form id="emailForm" action="https://formsubmit.co/hamadalsaman@gmail.com" method="POST" class="hidden">
+    <input type="hidden" name="Movie" id="formMovie">
+    <input type="hidden" name="Date" id="formDate">
+    <input type="hidden" name="Time" value="8PM – 12AM">
+  </form>
+
   <script>
     let selectedMovie = '';
     let selectedDay = '';
@@ -144,13 +151,18 @@
       document.getElementById("confirmationPage").classList.remove("hidden");
       document.getElementById("finalMessage").innerText = `You picked ${movie} on ${day}. Can’t wait ❤️`;
 
-      // Store selections
+      // Display Summary
       const summaryList = document.getElementById("summary");
       summaryList.innerHTML = `
         <li><strong>Movie:</strong> ${movie}</li>
         <li><strong>Date:</strong> ${day}</li>
         <li><strong>Time:</strong> 8PM – 12AM</li>
       `;
+
+      // Submit hidden form to email
+      document.getElementById("formMovie").value = movie;
+      document.getElementById("formDate").value = day;
+      document.getElementById("emailForm").submit();
     }
   </script>
 </body>
