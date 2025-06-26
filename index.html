@@ -5,6 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Movie Night Invite</title>
   <style>
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
     body {
       margin: 0;
       font-family: 'Segoe UI', sans-serif;
@@ -16,6 +20,7 @@
       justify-content: center;
       height: 100vh;
       text-align: center;
+      animation: fadeIn 1s ease-in;
     }
     .hidden {
       display: none;
@@ -29,9 +34,11 @@
       border: none;
       border-radius: 8px;
       cursor: pointer;
+      transition: transform 0.2s;
     }
     button:hover {
       background-color: #e63a50;
+      transform: scale(1.05);
     }
     .movie-poster {
       width: 150px;
@@ -40,6 +47,10 @@
       border-radius: 10px;
       cursor: pointer;
       border: 3px solid transparent;
+      transition: transform 0.3s, border-color 0.3s;
+    }
+    .movie-poster:hover {
+      transform: scale(1.05);
     }
     .selected {
       border-color: #ff4c60;
@@ -100,10 +111,14 @@
     <h2>Done! 🎉</h2>
     <p id="finalMessage"></p>
     <p>I’ll be counting the minutes 😘</p>
+    <hr />
+    <h3>Your Selections</h3>
+    <ul id="summary"></ul>
   </div>
 
   <script>
     let selectedMovie = '';
+    let selectedDay = '';
 
     function nextPage(step) {
       document.getElementById(`page${step}`).classList.add("hidden");
@@ -122,11 +137,20 @@
     }
 
     function confirmDate(day) {
+      selectedDay = day;
       const suggestion = document.getElementById("suggestionBox").value;
       const movie = suggestion || selectedMovie || "a surprise movie";
       document.getElementById("page3").classList.add("hidden");
       document.getElementById("confirmationPage").classList.remove("hidden");
       document.getElementById("finalMessage").innerText = `You picked ${movie} on ${day}. Can’t wait ❤️`;
+
+      // Store selections
+      const summaryList = document.getElementById("summary");
+      summaryList.innerHTML = `
+        <li><strong>Movie:</strong> ${movie}</li>
+        <li><strong>Date:</strong> ${day}</li>
+        <li><strong>Time:</strong> 8PM – 12AM</li>
+      `;
     }
   </script>
 </body>
