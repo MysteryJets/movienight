@@ -77,24 +77,31 @@
       margin-top: 10px;
       width: 60%;
     }
-    audio {
-      position: absolute;
-      top: 10px;
-      left: 10px;
-      z-index: 999;
+    #audioControl {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      background: #4caf50;
+      color: white;
+      padding: 10px 16px;
+      border-radius: 8px;
+      font-family: 'Uncial Antiqua', cursive;
+      cursor: pointer;
+      z-index: 1000;
     }
   </style>
 </head>
 <body>
-  <audio autoplay loop>
-    <source src="https://dl.sndup.net/qg8f/Zelda%20Lofi%20.mp3" type="audio/mpeg">
+  <audio id="bgm" loop>
+    <source src="https://files.catbox.moe/qn7owz.mp3" type="audio/mpeg">
     Your browser does not support the audio element.
   </audio>
+  <div id="audioControl" onclick="toggleAudio()">🔊 Music On</div>
 
   <div id="page1">
     <h1>Dear Princess ❤️</h1>
     <p>A Hylian quest awaits you! Join me for a legendary movie night.<br />Shall we begin our journey?</p>
-    <button onclick="nextPage(1)">Begin Quest 🎮</button>
+    <button onclick="startMusicAndNextPage()">Begin Quest 🎮</button>
   </div>
 
   <div id="page2" class="hidden">
@@ -161,6 +168,25 @@
 
   <script>
     let selectedMovie = '';
+
+    function startMusicAndNextPage() {
+      const audio = document.getElementById("bgm");
+      audio.volume = 0.2;
+      audio.play();
+      nextPage(1);
+    }
+
+    function toggleAudio() {
+      const audio = document.getElementById("bgm");
+      const control = document.getElementById("audioControl");
+      if (audio.paused) {
+        audio.play();
+        control.innerText = '🔊 Music On';
+      } else {
+        audio.pause();
+        control.innerText = '🔇 Music Off';
+      }
+    }
 
     function nextPage(step) {
       document.getElementById(`page${step}`).classList.add("hidden");
