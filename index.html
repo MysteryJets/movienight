@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Zelda Movie Night Invite</title>
+  <title>Movie Night Invite</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Uncial+Antiqua&display=swap');
     @keyframes fadeIn {
@@ -13,7 +13,7 @@
     body {
       margin: 0;
       font-family: 'Uncial Antiqua', cursive;
-      background: url('https://raw.githubusercontent.com/MysteryJets/movienight/refs/heads/main/background.jpg') no-repeat center center fixed;
+      background: url('https://raw.githubusercontent.com/MysteryJets/movienight/refs/heads/main/backgroundd.jpeg') no-repeat center center fixed;
       background-size: cover;
       color: #fff3c1;
       display: flex;
@@ -98,13 +98,13 @@
   <div id="audioControl" onclick="toggleAudio()">🔊 Music On</div>
 
   <div id="page1">
-    <h1>Dear Princess ❤️</h1>
-    <p>A Hylian quest awaits you! Join me for a legendary movie night.<br />Shall we begin our journey?</p>
-    <button onclick="startMusicAndNextPage()">Begin Quest 🎮</button>
+    <h1>Dear Hamda</h1>
+    <p>Join me for a movie night?<br /></p>
+    <button onclick="startMusicAndNextPage()">Continue 🎮</button>
   </div>
 
   <div id="page2" class="hidden">
-    <h2>Select your magical tale…</h2>
+    <h2>Select Movie</h2>
     <div class="movies-container">
       <img src="https://raw.githubusercontent.com/MysteryJets/movienight/refs/heads/main/bullet-train.jpg" class="movie-poster" onclick="selectMovie(this, 'Bullet Train')">
       <img src="https://raw.githubusercontent.com/MysteryJets/movienight/refs/heads/main/heretic.jpg" class="movie-poster" onclick="selectMovie(this, 'Heretic')">
@@ -112,15 +112,15 @@
       <img src="https://raw.githubusercontent.com/MysteryJets/movienight/refs/heads/main/way-way-back.jpg" class="movie-poster" onclick="selectMovie(this, 'The Way Way Back')">
     </div>
     <div>
-      <button onclick="toggleSuggestionBox()">Suggest Your Own 🧝‍♀️</button>
+      <button onclick="toggleSuggestionBox()">Suggest Other Movie 🧝‍♀️</button>
       <input type="text" id="suggestionBox" class="hidden" placeholder="Write your own movie...">
     </div>
     <button onclick="nextPage(2)">Continue ➡️</button>
   </div>
 
   <div id="page3" class="hidden">
-    <h2>Choose the sacred time 🕰️</h2>
-    <p>When shall we gather by torchlight?</p>
+    <h2>Choose The Time 🕰️</h2>
+    <p>When do you want to get togetger?</p>
     <div class="option-container">
       <label>Day:
         <select id="daySelect">
@@ -151,11 +151,11 @@
   </div>
 
   <div id="confirmationPage" class="hidden">
-    <h2>Quest Accepted! 🏆</h2>
+    <h2>🏆</h2>
     <p id="finalMessage"></p>
-    <p>Until then, may the Triforce be with us 💚</p>
+    <p>See you then</p>
     <hr />
-    <h3>Your Sacred Choices</h3>
+    <h3>Your time:</h3>
     <ul id="summary"></ul>
   </div>
 
