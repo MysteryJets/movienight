@@ -3,17 +3,19 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Movie Night Invite</title>
+  <title>Zelda Movie Night Invite</title>
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Uncial+Antiqua&display=swap');
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(20px); }
       to { opacity: 1; transform: translateY(0); }
     }
     body {
       margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background-color: #1e1e2f;
-      color: white;
+      font-family: 'Uncial Antiqua', cursive;
+      background: url('https://wallpapercave.com/wp/wp6947999.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: #fff9c4;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -21,6 +23,7 @@
       height: 100vh;
       text-align: center;
       animation: fadeIn 1s ease-in;
+      backdrop-filter: brightness(0.6);
     }
     .hidden {
       display: none;
@@ -28,8 +31,8 @@
     button {
       padding: 12px 24px;
       margin: 10px;
-      font-size: 16px;
-      background-color: #ff4c60;
+      font-size: 18px;
+      background-color: #4caf50;
       color: white;
       border: none;
       border-radius: 8px;
@@ -37,7 +40,7 @@
       transition: transform 0.2s;
     }
     button:hover {
-      background-color: #e63a50;
+      background-color: #66bb6a;
       transform: scale(1.05);
     }
     .movie-poster {
@@ -53,7 +56,7 @@
       transform: scale(1.05);
     }
     .selected {
-      border-color: #ff4c60;
+      border-color: #fdd835;
     }
     .movies-container {
       display: flex;
@@ -62,11 +65,11 @@
     }
     .option-container {
       display: flex;
-      gap: 20px;
       flex-direction: column;
+      gap: 20px;
       align-items: center;
     }
-    input[type="text"] {
+    input[type="text"], select {
       padding: 10px;
       font-size: 16px;
       border-radius: 5px;
@@ -74,58 +77,90 @@
       margin-top: 10px;
       width: 60%;
     }
+    audio {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      z-index: 999;
+    }
   </style>
 </head>
 <body>
+  <audio autoplay loop>
+    <source src="https://dl.sndup.net/qg8f/Zelda%20Lofi%20.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+
   <div id="page1">
-    <h1>Hey love ❤️</h1>
-    <p>I’ve got a special movie night planned just for us.<br />Wanna join me for some cozy time and popcorn?</p>
-    <button onclick="nextPage(1)">Next 🍿</button>
+    <h1>Dear Princess ❤️</h1>
+    <p>A Hylian quest awaits you! Join me for a legendary movie night.<br />Shall we begin our journey?</p>
+    <button onclick="nextPage(1)">Begin Quest 🎮</button>
   </div>
 
   <div id="page2" class="hidden">
-    <h2>Pick what you’re in the mood for…</h2>
+    <h2>Select your magical tale…</h2>
     <div class="movies-container">
-      <img src="https://upload.wikimedia.org/wikipedia/en/0/0c/Bullet_Train_film_poster.jpg" class="movie-poster" onclick="selectMovie(this, 'Bullet Train')">
-      <img src="https://upload.wikimedia.org/wikipedia/en/1/13/The_Heretic.jpg" class="movie-poster" onclick="selectMovie(this, 'Heretic')">
+      <img src="https://upload.wikimedia.org/wikipedia/en/7/71/Bullet_Train_%282022_film%29.jpg" class="movie-poster" onclick="selectMovie(this, 'Bullet Train')">
+      <img src="https://upload.wikimedia.org/wikipedia/en/f/f5/The_Heretic_2023_Poster.jpg" class="movie-poster" onclick="selectMovie(this, 'Heretic')">
       <img src="https://upload.wikimedia.org/wikipedia/en/4/43/The_Disaster_Artist.png" class="movie-poster" onclick="selectMovie(this, 'The Disaster Artist')">
       <img src="https://upload.wikimedia.org/wikipedia/en/d/d0/The_Way_Way_Back_Poster.jpg" class="movie-poster" onclick="selectMovie(this, 'The Way Way Back')">
     </div>
     <div>
-      <button onclick="toggleSuggestionBox()">Other Suggestions 💡</button>
-      <input type="text" id="suggestionBox" class="hidden" placeholder="Suggest your own movie...">
+      <button onclick="toggleSuggestionBox()">Suggest Your Own 🧝‍♀️</button>
+      <input type="text" id="suggestionBox" class="hidden" placeholder="Write your own movie...">
     </div>
-    <button onclick="nextPage(2)">Next 🎥</button>
+    <button onclick="nextPage(2)">Continue ➡️</button>
   </div>
 
   <div id="page3" class="hidden">
-    <h2>Now let’s lock it in 🗓️</h2>
-    <p>When are you free, my favorite person?</p>
+    <h2>Choose the sacred time 🕰️</h2>
+    <p>When shall we gather by torchlight?</p>
     <div class="option-container">
-      <button onclick="confirmDate('Saturday')">Saturday | 8PM–12AM</button>
-      <button onclick="confirmDate('Sunday')">Sunday | 8PM–12AM</button>
+      <label>Day:
+        <select id="daySelect">
+          <option value="Saturday">Saturday</option>
+          <option value="Sunday">Sunday</option>
+        </select>
+      </label>
+      <label>Time:
+        <select id="timeSelect">
+          <option value="5:00 PM">5:00 PM</option>
+          <option value="5:30 PM">5:30 PM</option>
+          <option value="6:00 PM">6:00 PM</option>
+          <option value="6:30 PM">6:30 PM</option>
+          <option value="7:00 PM">7:00 PM</option>
+          <option value="7:30 PM">7:30 PM</option>
+          <option value="8:00 PM">8:00 PM</option>
+          <option value="8:30 PM">8:30 PM</option>
+          <option value="9:00 PM">9:00 PM</option>
+          <option value="9:30 PM">9:30 PM</option>
+          <option value="10:00 PM">10:00 PM</option>
+          <option value="10:30 PM">10:30 PM</option>
+          <option value="11:00 PM">11:00 PM</option>
+          <option value="11:30 PM">11:30 PM</option>
+        </select>
+      </label>
+      <button onclick="confirmSelection()">Confirm Choice 🗡️</button>
     </div>
   </div>
 
   <div id="confirmationPage" class="hidden">
-    <h2>Done! 🎉</h2>
+    <h2>Quest Accepted! 🏆</h2>
     <p id="finalMessage"></p>
-    <p>I’ll be counting the minutes 😘</p>
+    <p>Until then, may the Triforce be with us 💚</p>
     <hr />
-    <h3>Your Selections</h3>
+    <h3>Your Sacred Choices</h3>
     <ul id="summary"></ul>
   </div>
 
-  <!-- Hidden form to email result -->
   <form id="emailForm" action="https://formsubmit.co/hamadalsaman0@gmail.com" method="POST" class="hidden">
     <input type="hidden" name="Movie" id="formMovie">
     <input type="hidden" name="Date" id="formDate">
-    <input type="hidden" name="Time" value="8PM – 12AM">
+    <input type="hidden" name="Time" id="formTime">
   </form>
 
   <script>
     let selectedMovie = '';
-    let selectedDay = '';
 
     function nextPage(step) {
       document.getElementById(`page${step}`).classList.add("hidden");
@@ -143,25 +178,25 @@
       box.classList.toggle("hidden");
     }
 
-    function confirmDate(day) {
-      selectedDay = day;
+    function confirmSelection() {
+      const day = document.getElementById("daySelect").value;
+      const time = document.getElementById("timeSelect").value;
       const suggestion = document.getElementById("suggestionBox").value;
       const movie = suggestion || selectedMovie || "a surprise movie";
+
       document.getElementById("page3").classList.add("hidden");
       document.getElementById("confirmationPage").classList.remove("hidden");
-      document.getElementById("finalMessage").innerText = `You picked ${movie} on ${day}. Can’t wait ❤️`;
+      document.getElementById("finalMessage").innerText = `You picked ${movie} on ${day} at ${time}. Let the adventure begin ❤️`;
 
-      // Display Summary
-      const summaryList = document.getElementById("summary");
-      summaryList.innerHTML = `
+      document.getElementById("summary").innerHTML = `
         <li><strong>Movie:</strong> ${movie}</li>
         <li><strong>Date:</strong> ${day}</li>
-        <li><strong>Time:</strong> 8PM – 12AM</li>
+        <li><strong>Time:</strong> ${time}</li>
       `;
 
-      // Submit hidden form to email
       document.getElementById("formMovie").value = movie;
       document.getElementById("formDate").value = day;
+      document.getElementById("formTime").value = time;
       document.getElementById("emailForm").submit();
     }
   </script>
