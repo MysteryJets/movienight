@@ -13,9 +13,9 @@
     body {
       margin: 0;
       font-family: 'Uncial Antiqua', cursive;
-      background: url('https://wallpapercave.com/wp/wp6947999.jpg') no-repeat center center fixed;
+      background: url('https://i.pinimg.com/736x/26/c3/42/26c342e5469e1b4d9b49c22242d1b7dd.jpg') no-repeat center center fixed;
       background-size: cover;
-      color: #fff9c4;
+      color: #fff3c1;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -23,7 +23,6 @@
       height: 100vh;
       text-align: center;
       animation: fadeIn 1s ease-in;
-      backdrop-filter: brightness(0.6);
     }
     .hidden {
       display: none;
@@ -32,7 +31,7 @@
       padding: 12px 24px;
       margin: 10px;
       font-size: 18px;
-      background-color: #4caf50;
+      background-color: #3e8e41;
       color: white;
       border: none;
       border-radius: 8px;
@@ -93,7 +92,7 @@
 </head>
 <body>
   <audio id="bgm" loop>
-    <source src="https://files.catbox.moe/qn7owz.mp3" type="audio/mpeg">
+    <source src="https://cdn.pixabay.com/audio/2022/03/29/audio_2a5cfc5779.mp3" type="audio/mpeg">
     Your browser does not support the audio element.
   </audio>
   <div id="audioControl" onclick="toggleAudio()">🔊 Music On</div>
@@ -107,10 +106,10 @@
   <div id="page2" class="hidden">
     <h2>Select your magical tale…</h2>
     <div class="movies-container">
-      <img src="https://upload.wikimedia.org/wikipedia/en/7/71/Bullet_Train_%282022_film%29.jpg" class="movie-poster" onclick="selectMovie(this, 'Bullet Train')">
-      <img src="https://upload.wikimedia.org/wikipedia/en/f/f5/The_Heretic_2023_Poster.jpg" class="movie-poster" onclick="selectMovie(this, 'Heretic')">
-      <img src="https://upload.wikimedia.org/wikipedia/en/4/43/The_Disaster_Artist.png" class="movie-poster" onclick="selectMovie(this, 'The Disaster Artist')">
-      <img src="https://upload.wikimedia.org/wikipedia/en/d/d0/The_Way_Way_Back_Poster.jpg" class="movie-poster" onclick="selectMovie(this, 'The Way Way Back')">
+      <img src="https://upload.wikimedia.org/wikipedia/en/1/13/Bullet_Train_%28poster%29.jpeg" class="movie-poster" onclick="selectMovie(this, 'Bullet Train')">
+      <img src="https://upload.wikimedia.org/wikipedia/en/c/cb/Heretic_film_poster.jpg" class="movie-poster" onclick="selectMovie(this, 'Heretic')">
+      <img src="https://m.media-amazon.com/images/M/MV5BMmZlMjUxZDktNGNjYS00NmI2LWFhYTAtOGY2MjQwNTM1M2U4XkEyXkFqcGc@._V1_.jpg" class="movie-poster" onclick="selectMovie(this, 'The Disaster Artist')">
+      <img src="https://m.media-amazon.com/images/M/MV5BNTU5ODk5NDg0Nl5BMl5BanBnXkFtZTcwNzQwMjI1OQ@@._V1_.jpg" class="movie-poster" onclick="selectMovie(this, 'The Way Way Back')">
     </div>
     <div>
       <button onclick="toggleSuggestionBox()">Suggest Your Own 🧝‍♀️</button>
@@ -171,7 +170,7 @@
 
     function startMusicAndNextPage() {
       const audio = document.getElementById("bgm");
-      audio.volume = 0.2;
+      audio.volume = 0.3;
       audio.play();
       nextPage(1);
     }
